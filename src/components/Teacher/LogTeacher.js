@@ -17,13 +17,15 @@ export default class LogTeacher extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          showComponent: false
+          showComponent: false, 
+          page  : "null"
         };
       }
 
     functionClicked =()=>  {
+      this.props.setPage("teacher") ; 
         console.log('Button Clicked'); 
-        this.setState ({showComponent : true})
+        this.setState ({showComponent : true, page : "teacher"})
     }
 
 
@@ -95,7 +97,7 @@ export default class LogTeacher extends Component {
             </MDBCol>
           </MDBRow>
         </MDBCard>
-      </MDBContainer>) : (<TeacherHome/>)
+      </MDBContainer>) : (<TeacherHome page = {this.state.page}/>)
     );
   }
 }

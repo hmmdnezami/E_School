@@ -10,7 +10,7 @@ import 'ag-grid-community/styles/ag-theme-alpine.css'
 
 const columnDefs  = [
     {headerName : 'Subject', field : "subject"}, 
-    {headerName : 'Teacher', field : "teacher"},
+    {headerName : 'Topic', field : "topic"},
     {headerName : 'Date', field: "date"}
 ]
 
@@ -28,6 +28,22 @@ export default class TeacherDashboard extends Component {
             }
         }
     }
+
+  async componentDidMount() {
+    let url = 'http://localhost:8080/eschool/test/' ; 
+    await fetch (url, {
+      headers : {
+        AccessControlAllowOrigin: '*'
+      }
+    }) 
+    .then((response) => response.json)
+    .then((response) => {
+      this.setState({rowData : response})
+    }) 
+    .catch((e) => {
+      console.log(e) ; 
+    })
+  }
 
 
   render() {

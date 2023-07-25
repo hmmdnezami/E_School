@@ -10,17 +10,25 @@ import StudentHome from './components/Student/StudentHome';
 import TeacherHome from './components/Teacher/TeacherHome';
 import LogTeacher from './components/Teacher/LogTeacher';
 import Contact from './components/Contact';
+import { useState } from 'react';
+
+
 
 function App() {
-  const flag = "null" ;
+  const [flag, setFlag] = useState("null") ; 
+
+function setPage (pageName) {
+  setFlag(pageName) ;
+}
+console.log(flag) ; 
   return (
   
     (flag === "null") ? <Router>
       <Header style = {{ margin : '5px'}}/>
       <Routes>
         <Route path = "/" element= {<Home/>}/>
-        <Route path ="/loginStudent" element ={<LogStudent/>}/>
-        <Route path ="/loginTeacher" element ={<LogTeacher/>}/>
+        <Route path ="/loginStudent" element ={<LogStudent setPage = {setPage}/> }/>
+        <Route path ="/loginTeacher" element ={<LogTeacher setPage = {setPage}/>}/>
         <Route path ="/contact" element ={<Contact/>}/>
         {/* <Route path ="/profile" element ={<Profile/>}/> */}
       </Routes>
